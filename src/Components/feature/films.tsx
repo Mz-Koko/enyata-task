@@ -1,6 +1,5 @@
 // Films.tsx
 import React, {useEffect} from 'react';
-import Table from '../shared/Table';
 import TableComponent from "../shared/TableComponent";
 
 export interface Film {

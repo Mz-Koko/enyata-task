@@ -1,9 +1,5 @@
 // People.tsx
 import React, {useEffect} from 'react';
-import Table from '../shared/Table';
-import SideBarMenu from "../shared/sideBarMenu";
-import MenuBar from "../shared/menuBar";
-import {useNavigate} from "react-router-dom";
 import TableComponent from "../shared/TableComponent";
 import {FilmsProps} from "./films";
 
