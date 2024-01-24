@@ -7,13 +7,13 @@ interface TableProps<T extends { id: number }> {
   data: T[];
   columns: { label: string; key: keyof T }[];
   onRowClick?: (itemId: number) => void;
-
+  identity?: string;
 }
 
-const Table: React.FC<TableProps<any>> = ({ title, data, columns, onRowClick }) => {
+const Table: React.FC<TableProps<any>> = ({ title, data, columns, onRowClick, identity }) => {
   return (
       <div>
-        <div className="text-[#A4A7B7] text-base font-normal leading-6 pt-[31px]">{title}</div>
+        <div className="text-[#A4A7B7] text-base font-normal leading-6 pt-[31px]">PP {title}</div>
         <div className="flex flex-col border border-[a4a7b766] rounded bg-white h-[589px] mt-8">
           <table>
             <thead>
@@ -30,10 +30,11 @@ const Table: React.FC<TableProps<any>> = ({ title, data, columns, onRowClick }) 
             </tr>
             </thead>
             <tbody>
-            {data.map((item) => (
+            {
+                data.map((item) => (
                 <tr key={item.id}
                     className="cursor-pointer flex flex-row h-[74px] items-center border-b border-[#E5E5E5] gap-12"
-                    onClick={() => onRowClick && onRowClick(item.id)}>
+                    onClick={() => onRowClick && onRowClick( identity ? (item[identity] || item.id) : item.id)}>
                     <td>
                         <div className="border border-[#C4C4C4] rounded-sm bg-white h-[14px] w-[14px] ml-6"></div>
                     </td>

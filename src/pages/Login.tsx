@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import Inputs from './inputs';
-import Button from "./button";
+import Inputs from '../Components/shared/inputs';
 import {useNavigate} from "react-router-dom";
 
-const Login: React.FC = () => {
+
+interface LoginProps {
+    login: () => void; // Declare the callback function
+}
+const Login: React.FC<LoginProps> = ({login}) => {
     const navigate = useNavigate();
 
     const [email, setEmail] = useState('');
@@ -42,13 +45,16 @@ const Login: React.FC = () => {
     };
 
     const handleLogin = () => {
+        login();
         navigate('/home');
     };
 
     return (
         <div>
             <div className="flex flex-row items-center">
-                <div className="h-screen flex w-[480px] bg-[#031434] bg-contain bg-no-repeat bg-center bg-login-bg">
+                <div className="px-4 bg-[#031434] w-[480px]">
+                    <div className="h-screen flex bg-contain bg-no-repeat bg-center bg-login-bg">
+                    </div>
                 </div>
                 <div className="flex flex-col m-auto w-[457px] h-[564px] border border-[#a4a7b74d] bg-white mx-[283px] py-[36px] px-[66px]">
                     <div className="text-[#434854] text-2xl font-semibold leading-8">Login</div>
@@ -62,16 +68,17 @@ const Login: React.FC = () => {
                             isValid={isEmailValid}
                         />
                         <Inputs
-                            type="text"
+                            type="password"
                             placeholder="Password"
                             value={password}
                             onChange={handlePasswordChange}
                             isValid={isPasswordValid}
+                            max={6}
                         />
-                        <Button
-                            buttonText="Login in" onClick={handleLogin}
-
-                        />
+                        <button onClick={handleLogin}
+                                disabled={!validateEmail(email) || !validatePassword(password)}                                className="
+                        bg-[#0A74DC] rounded-md w-[330px] h-[48px] justify-center items-center text-white text-center text-base leading-6 font-medium mb-6"
+                        >Log in</button>
                     </form>
                     <a href="#" onClick={handleForgotPasswordClick}
                     className="text-[#0A74DC] text-sm font-normal leading-4 underline text-center mb-24">

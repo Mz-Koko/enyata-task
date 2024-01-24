@@ -10,8 +10,9 @@ input[type="text"]:focus ~ .input-text {
 }
 
 @layer base {
-    html {
-        font-family: "Inter", sans-serif;
+    html, body {
+        min-height: 100vh; /* Minimum height of the viewport */
+        height: auto; /* Auto height */
     }
 }
 
